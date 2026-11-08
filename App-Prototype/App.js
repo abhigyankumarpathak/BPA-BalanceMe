@@ -5,7 +5,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Hello, World!</Text>
-      <Text style={styles.subtitle}>Welcome to BalanceMe.</Text>
+      <Text style={styles.subtitle}>Welcome to the BalanceMe Prototype App.</Text>
       <StatusBar style="auto" />
     </View>
   );
