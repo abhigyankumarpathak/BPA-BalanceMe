@@ -25,6 +25,12 @@
         "projectId": "2f01f4d2-3c2d-439c-94d0-dba15e998bae"
       }
     },
-    "owner": "thecoder12321"
+    "owner": "thecoder12321",
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/2f01f4d2-3c2d-439c-94d0-dba15e998bae"
+    }
   }
 }
