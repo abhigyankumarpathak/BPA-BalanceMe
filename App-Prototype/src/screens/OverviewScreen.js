@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { useApp, useTheme } from '../state';
 import { Card, IconBubble, MoodPicker, Progress, Row, Screen, T } from '../ui';
 import { CATEGORIES, fmt, MOOD_REPLIES, TODAY, WEEK } from '../mockData';
+import { SectionFeatures } from '../features';
 
 function WeekChart() {
   const t = useTheme();
@@ -120,6 +121,8 @@ export default function OverviewScreen() {
           </Row>
         ))}
       </Card>
+
+      <SectionFeatures section="overview" />
 
       <Card tone="soft">
         <T variant="h2">How are you feeling right now?</T>

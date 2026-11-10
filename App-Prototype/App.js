@@ -111,7 +111,7 @@ export default function App() {
         )}
         <View style={[styles.phone, option && { backgroundColor: option.theme.bg }]}>
           {option ? (
-            <ThemeContext.Provider value={option.theme}>
+            <ThemeContext.Provider value={{ ...option.theme, slot: picked }}>
               <AppProvider
                 key={picked}
                 onExit={() => setPicked(null)}

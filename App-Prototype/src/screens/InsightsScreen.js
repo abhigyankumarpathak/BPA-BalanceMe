@@ -4,6 +4,7 @@ import { Text, View } from 'react-native';
 import { useApp, useTheme } from '../state';
 import { Button, Card, Chip, ChipRow, Field, IconBubble, MoodPicker, Row, Screen, T } from '../ui';
 import { MOODS, REFLECTION_PROMPTS, WEEK, WEEK_MOODS } from '../mockData';
+import { SectionFeatures } from '../features';
 
 const emojiFor = (v) => MOODS.find((m) => m.value === v)?.emoji;
 
@@ -69,6 +70,8 @@ export default function InsightsScreen() {
         )}
       </Card>
 
+      <SectionFeatures section="insights" />
+
       <Card>
         <T variant="h2">Patterns we noticed</T>
         {INSIGHTS.map(([icon, text]) => (
@@ -92,7 +95,7 @@ export default function InsightsScreen() {
           }}
         />
         <Row>
-          <Button style={{ flex: 1 }} title="Save reflection" icon="checkmark" onPress={save} disabled={!text.trim()} />
+          <Button style={{ flex: 1 }} title="Save" icon="checkmark" onPress={save} disabled={!text.trim()} />
           <Button
             title="New prompt"
             variant="secondary"

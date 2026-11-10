@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { View } from 'react-native';
 import { useApp, useTheme } from '../state';
 import { Button, Card, Chip, ChipRow, IconBubble, Progress, Row, Screen, T, ToggleRow } from '../ui';
+import { SectionFeatures } from '../features';
 
 const DURATIONS = [
   { label: '1 min (demo)', minutes: 1 },
@@ -71,6 +72,8 @@ export default function FocusScreen() {
           <Button title="Reset" variant="secondary" icon="refresh" onPress={reset} disabled={!started} />
         </Row>
       </Card>
+
+      <SectionFeatures section="focus" />
 
       <Card>
         <T variant="label">How long</T>

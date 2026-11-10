@@ -4,6 +4,7 @@ import { Animated, View } from 'react-native';
 import { useApp, useTheme } from '../state';
 import { Button, Card, Chip, ChipRow, Logo, Row, Screen, T, ToggleRow } from '../ui';
 import { NUDGE_TONES } from '../mockData';
+import { SectionFeatures } from '../features';
 
 function NudgePreview({ message }) {
   const t = useTheme();
@@ -70,6 +71,8 @@ export default function NudgesScreen() {
           <NudgePreview message={NUDGE_TONES[tone]} />
           <Button title="Send me a test nudge" icon="notifications-outline" variant="secondary" onPress={() => setTest(true)} />
         </Card>
+
+        <SectionFeatures section="nudges" />
 
         <Card>
           <Row style={{ justifyContent: 'space-between' }}>

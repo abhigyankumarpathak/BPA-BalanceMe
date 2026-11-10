@@ -4,6 +4,7 @@ import { View } from 'react-native';
 import { useApp, useTheme } from '../state';
 import { Button, Card, Chip, ChipRow, Field, IconBubble, Progress, Row, Screen, T } from '../ui';
 import { GOAL_TEMPLATES } from '../mockData';
+import { SectionFeatures } from '../features';
 
 const FREQUENCIES = ['Daily', 'Weekdays', 'Weekends'];
 
@@ -83,6 +84,8 @@ export default function GoalsScreen() {
           </Row>
         </Card>
       ))}
+
+      <SectionFeatures section="goals" />
 
       <Card>
         <T variant="h2">Set a new goal</T>
