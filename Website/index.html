@@ -67,7 +67,14 @@
       background: var(--surface);
       border: 1px solid var(--accent);
       border-radius: var(--radius);
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
     }
+    .app-box:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); }
+    /* The main link stretches over the whole box; other links sit above it */
+    .app-box .main-link::after { content: ""; position: absolute; inset: 0; border-radius: inherit; }
+    .app-box .over { position: relative; z-index: 1; }
     .app-box img { flex: none; border-radius: 8px; }
     .app-box h2 { margin: 0 0 6px; font-size: 1.1rem; }
     .app-box p { margin: 0 0 6px; color: var(--muted); font-size: 0.92rem; }
@@ -84,8 +91,8 @@
       <div>
         <h2>App prototype: 5 design options</h2>
         <p>Each option has its own navigation and look, with sign-up, log-in and all five required screens: screen time, goals, nudges, focus mode and reflection. Prototype only, so nothing is saved.</p>
-        <p><a href="app/">Try it in your browser &rarr;</a></p>
-        <p>On your phone: install <strong>Expo Go</strong> from the App Store or Google Play, then scan this code with your camera (iPhone) or inside Expo Go (Android). Or send teammates this link to open it straight in Expo Go: <a href="expo/">bpa-balanceme.onrender.com/expo</a>.</p>
+        <p><a class="main-link" href="app/">Try it in your browser &rarr;</a></p>
+        <p>On your phone: install <strong>Expo Go</strong> from the App Store or Google Play, then scan this code with your camera (iPhone) or inside Expo Go (Android). Or send teammates this link to open it straight in Expo Go: <a class="over" href="expo/">bpa-balanceme.onrender.com/expo</a>.</p>
       </div>
     </div>
 
