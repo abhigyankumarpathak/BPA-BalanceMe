@@ -64,7 +64,7 @@ function Chooser({ onPick }) {
           Five design options. Each has its own navigation and visual style, with the same five screens, sign-up and log-in.
         </Text>
         {OPTIONS.map((o, i) => (
-          <Pressable key={o.nav} style={styles.card} onPress={() => onPick(i)} accessibilityRole="button">
+          <Pressable key={o.nav} style={styles.card} onPress={() => onPick(i, false)}>
             <View style={styles.swatches}>
               {[o.theme.bg, o.theme.accent, o.theme.highlight].map((c, j) => (
                 <View key={j} style={[styles.swatch, { backgroundColor: c }]} />
@@ -76,6 +76,24 @@ function Chooser({ onPick }) {
               </Text>
               <Text style={styles.cardDesc}>{o.desc}</Text>
               <Text style={styles.cardVibe}>{o.theme.vibe}</Text>
+              <View style={styles.cardActions}>
+                <Pressable
+                  onPress={() => onPick(i, false)}
+                  accessibilityRole="button"
+                  accessibilityLabel={`Option ${i + 1}: start at sign-up`}
+                  style={[styles.action, styles.actionSecondary]}
+                >
+                  <Text style={styles.actionSecondaryText}>Start at sign-up</Text>
+                </Pressable>
+                <Pressable
+                  onPress={() => onPick(i, true)}
+                  accessibilityRole="button"
+                  accessibilityLabel={`Option ${i + 1}: skip login and open the demo`}
+                  style={[styles.action, { backgroundColor: '#1b7f67' }]}
+                >
+                  <Text style={styles.actionText}>Skip login ›</Text>
+                </Pressable>
+              </View>
             </View>
           </Pressable>
         ))}
@@ -87,7 +105,12 @@ function Chooser({ onPick }) {
 
 export default function App() {
   const [picked, setPicked] = useState(initialOption);
+  const [skipLogin, setSkipLogin] = useState(!!params?.get('demo'));
   const option = picked !== null ? OPTIONS[picked] : null;
+  const pick = (i, skip) => {
+    setSkipLogin(skip);
+    setPicked(i);
+  };
   const step = (d) => setPicked((p) => (p + d + OPTIONS.length) % OPTIONS.length);
 
   return (
@@ -115,7 +138,7 @@ export default function App() {
               <AppProvider
                 key={picked}
                 onExit={() => setPicked(null)}
-                initialUser={params?.get('demo') ? DEMO_USER : null}
+                initialUser={skipLogin ? DEMO_USER : null}
               >
                 <Root Nav={option.Nav} />
               </AppProvider>
@@ -123,7 +146,7 @@ export default function App() {
             </ThemeContext.Provider>
           ) : (
             <>
-              <Chooser onPick={setPicked} />
+              <Chooser onPick={pick} />
               <StatusBar style="dark" />
             </>
           )}
@@ -177,4 +200,9 @@ const styles = StyleSheet.create({
   cardTitle: { fontSize: 16, fontWeight: '700', color: '#14302a', marginBottom: 2 },
   cardDesc: { fontSize: 13, lineHeight: 18, color: '#526a64' },
   cardVibe: { fontSize: 12, color: '#1b7f67', fontWeight: '600', marginTop: 4 },
+  cardActions: { flexDirection: 'row', gap: 8, marginTop: 12 },
+  action: { flex: 1, minHeight: 40, borderRadius: 999, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 10 },
+  actionSecondary: { borderWidth: 1.5, borderColor: '#1b7f67' },
+  actionText: { color: '#ffffff', fontWeight: '700', fontSize: 13 },
+  actionSecondaryText: { color: '#1b7f67', fontWeight: '700', fontSize: 13 },
 });
