@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BalanceMe — Nav Option 5: Full-Screen Menu</title>
+  <link rel="stylesheet" href="base.css">
+  <style>
+    /* Minimal header; all navigation lives behind one menu button */
+    .header {
+      position: sticky;
+      top: 0;
+      height: 72px;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg);
+      z-index: 300;
+    }
+    .menu-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: var(--surface);
+    }
+    .menu-btn .close { display: none; }
+    .nav-open .menu-btn .open { display: none; }
+    .nav-open .menu-btn .close { display: inline; }
+    .nav-open .header { background: transparent; }
+    .nav-open .header .brand,
+    .nav-open .menu-btn { color: #fff; }
+    .nav-open .menu-btn { background: transparent; border-color: rgba(255, 255, 255, 0.4); }
+    .nav-open { overflow: hidden; }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--accent);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      padding: 96px 8vw 48px;
+      z-index: 200;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    .nav-open .overlay { opacity: 1; visibility: visible; }
+    .overlay nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      counter-reset: item;
+    }
+    .overlay nav a {
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      opacity: 0.6;
+      transform: translateY(16px);
+      transition: opacity 0.2s, transform 0.4s;
+    }
+    .overlay nav a::before {
+      counter-increment: item;
+      content: "0" counter(item);
+      font-size: 0.9rem;
+      vertical-align: top;
+      margin-right: 16px;
+      opacity: 0.7;
+    }
+    .nav-open .overlay nav a { transform: none; }
+    .overlay nav a:hover,
+    .overlay nav a.is-active { opacity: 1; }
+  </style>
+</head>
+<body data-mode="pages" data-option="5">
+  <header class="header">
+    <a href="#s1" class="brand" data-nav>BalanceMe</a>
+    <button class="menu-btn" data-toggle aria-expanded="false">
+      <span class="open">Menu &#9776;</span>
+      <span class="close">Close &times;</span>
+    </button>
+  </header>
+
+  <div class="overlay">
+    <nav>
+      <a href="#s1" data-nav>Section 1</a>
+      <a href="#s2" data-nav>Section 2</a>
+      <a href="#s3" data-nav>Section 3</a>
+      <a href="#s4" data-nav>Section 4</a>
+      <a href="#s5" data-nav>Section 5</a>
+    </nav>
+  </div>
+
+  <main id="content"></main>
+  <script src="base.js"></script>
+</body>
+</html>

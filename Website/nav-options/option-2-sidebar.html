@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BalanceMe — Nav Option 2: Sidebar</title>
+  <link rel="stylesheet" href="base.css">
+  <style>
+    :root { --sidebar-w: 248px; }
+    .sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: var(--sidebar-w);
+      background: var(--surface);
+      border-right: 1px solid var(--line);
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      z-index: 100;
+      transition: transform 0.25s ease;
+    }
+    .sidebar .brand { padding: 0 12px; }
+    .sidebar nav { display: flex; flex-direction: column; gap: 2px; }
+    .sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .sidebar nav a::before {
+      content: "";
+      width: 20px;
+      height: 20px;
+      border-radius: 6px;
+      background: var(--placeholder);
+      flex: none;
+    }
+    .sidebar nav a:hover { background: var(--bg); color: var(--text); }
+    .sidebar nav a.is-active { background: var(--accent-soft); color: var(--accent); }
+    .sidebar nav a.is-active::before { background: var(--accent); }
+    .sidebar .group-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      padding: 0 12px;
+      margin: 8px 0 4px;
+    }
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 16px 12px;
+      border-radius: var(--radius);
+      background: var(--bg);
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    main { margin-left: var(--sidebar-w); }
+
+    .mobile-bar { display: none; }
+    .scrim { display: none; }
+
+    @media (max-width: 860px) {
+      main { margin-left: 0; }
+      .sidebar { transform: translateX(-100%); }
+      .nav-open .sidebar { transform: none; box-shadow: 0 0 40px rgba(0, 0, 0, 0.2); }
+      .nav-open .scrim {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 90;
+      }
+      .mobile-bar {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        position: sticky;
+        top: 0;
+        height: 56px;
+        padding: 0 16px;
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+        z-index: 80;
+      }
+      .mobile-bar button { font-size: 1.5rem; }
+    }
+  </style>
+</head>
+<body data-mode="pages" data-option="2">
+  <div class="mobile-bar">
+    <button data-toggle aria-label="Menu" aria-expanded="false">&#9776;</button>
+    <span class="brand">BalanceMe</span>
+  </div>
+  <div class="scrim" data-toggle></div>
+
+  <aside class="sidebar">
+    <a href="#s1" class="brand" data-nav>BalanceMe</a>
+    <nav>
+      <div class="group-label">Group A</div>
+      <a href="#s1" data-nav>Section 1</a>
+      <a href="#s2" data-nav>Section 2</a>
+      <a href="#s3" data-nav>Section 3</a>
+      <div class="group-label">Group B</div>
+      <a href="#s4" data-nav>Section 4</a>
+      <a href="#s5" data-nav>Section 5</a>
+    </nav>
+    <div class="sidebar-footer">Footer slot (e.g. app download link)</div>
+  </aside>
+
+  <main id="content"></main>
+  <script src="base.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BalanceMe — Navigation Options</title>
+  <link rel="stylesheet" href="base.css">
+  <style>
+    .wrap { max-width: 900px; margin: 0 auto; padding: 56px 24px; }
+    h1 { margin: 0 0 8px; }
+    .lead { color: var(--muted); margin: 0 0 32px; }
+    .list { display: grid; gap: 12px; }
+    .list a {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      padding: 20px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .list a:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .num {
+      flex: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .list h2 { margin: 0 0 4px; font-size: 1.1rem; }
+    .list p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Navigation Options</h1>
+    <p class="lead">Five layout prototypes with placeholder sections. Open each one, click around, and resize the window to check mobile.</p>
+    <div class="list">
+      <a href="option-1-top-bar.html">
+        <span class="num">1</span>
+        <div><h2>Top Bar</h2><p>Classic sticky horizontal bar with a call-to-action button. Becomes a hamburger dropdown on mobile.</p></div>
+      </a>
+      <a href="option-2-sidebar.html">
+        <span class="num">2</span>
+        <div><h2>Sidebar</h2><p>Fixed left panel with grouped links, like a guide or handbook. Slides out as a drawer on mobile.</p></div>
+      </a>
+      <a href="option-3-scroll.html">
+        <span class="num">3</span>
+        <div><h2>One-Page Scroll</h2><p>Every section on one long page, with side dots that track where you are and a reading progress bar.</p></div>
+      </a>
+      <a href="option-4-bottom-tabs.html">
+        <span class="num">4</span>
+        <div><h2>Bottom Tabs</h2><p>Floating tab bar that matches the mobile app's feel. Turns into a native-style tab bar on phones.</p></div>
+      </a>
+      <a href="option-5-overlay.html">
+        <span class="num">5</span>
+        <div><h2>Full-Screen Menu</h2><p>Clean, minimal header. One menu button opens a large full-screen list of sections.</p></div>
+      </a>
+    </div>
+  </div>
+</body>
+</html>

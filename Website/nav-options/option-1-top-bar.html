@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BalanceMe — Nav Option 1: Top Bar</title>
+  <link rel="stylesheet" href="base.css">
+  <style>
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      height: 64px;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .topbar nav {
+      display: flex;
+      gap: 4px;
+      margin-left: auto;
+    }
+    .topbar nav a {
+      padding: 8px 14px;
+      border-radius: 8px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+    .topbar nav a:hover { color: var(--text); background: var(--bg); }
+    .topbar nav a.is-active { color: var(--accent); background: var(--accent-soft); }
+    .cta {
+      background: var(--accent);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-weight: 600;
+    }
+    .hamburger { display: none; font-size: 1.5rem; margin-left: auto; }
+
+    @media (max-width: 760px) {
+      .hamburger { display: block; }
+      .cta { display: none; }
+      .topbar nav {
+        display: none;
+        position: absolute;
+        top: 64px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: var(--surface);
+        border-bottom: 1px solid var(--line);
+        padding: 8px 16px 16px;
+      }
+      .nav-open .topbar nav { display: flex; }
+    }
+  </style>
+</head>
+<body data-mode="pages" data-option="1">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#s1" class="brand" data-nav>BalanceMe</a>
+      <button class="hamburger" data-toggle aria-label="Menu" aria-expanded="false">&#9776;</button>
+      <nav>
+        <a href="#s1" data-nav>Section 1</a>
+        <a href="#s2" data-nav>Section 2</a>
+        <a href="#s3" data-nav>Section 3</a>
+        <a href="#s4" data-nav>Section 4</a>
+        <a href="#s5" data-nav>Section 5</a>
+      </nav>
+      <a href="#s5" class="cta">Get the App</a>
+    </div>
+  </header>
+  <main id="content"></main>
+  <script src="base.js"></script>
+</body>
+</html>
