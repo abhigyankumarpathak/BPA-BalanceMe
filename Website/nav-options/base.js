@@ -82,7 +82,8 @@ document.addEventListener("keydown", (e) => {
 
 // Prototype switcher (bottom-left pill)
 const current = Number(body.dataset.option);
-if (current) {
+const inPreview = window.self !== window.top; // hide inside index.html thumbnails
+if (current && !inPreview) {
   const prev = OPTIONS[(current - 2 + OPTIONS.length) % OPTIONS.length];
   const next = OPTIONS[current % OPTIONS.length];
   const switcher = document.createElement("div");
@@ -91,6 +92,6 @@ if (current) {
     <a href="${prev.file}" title="${prev.name}">&larr;</a>
     <span>${current}/${OPTIONS.length}: ${OPTIONS[current - 1].name}</span>
     <a href="${next.file}" title="${next.name}">&rarr;</a>
-    <a href="index.html" title="All options">&#9776;</a>`;
+    <a href="../index.html" title="All options">&#9776;</a>`;
   body.appendChild(switcher);
 }

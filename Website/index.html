@@ -3,13 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BalanceMe</title>
-  <link rel="stylesheet" href="style.css">
+  <title>BalanceMe — Navigation Options</title>
+  <link rel="stylesheet" href="nav-options/base.css">
+  <style>
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 56px 24px; }
+    h1 { margin: 0 0 8px; }
+    .lead { color: var(--muted); margin: 0 0 32px; max-width: 640px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    }
+    /* Live mini preview: a 1280x800 page scaled down to 320x200 */
+    .preview {
+      width: 320px;
+      height: 200px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
+    }
+    .preview iframe {
+      width: 1280px;
+      height: 800px;
+      border: 0;
+      transform: scale(0.25);
+      transform-origin: 0 0;
+      pointer-events: none;
+    }
+    .card-body { padding: 18px 20px 20px; display: flex; gap: 14px; }
+    .num {
+      flex: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .card h2 { margin: 2px 0 4px; font-size: 1.05rem; }
+    .card p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+  </style>
 </head>
 <body>
-  <main>
-    <h1>Hello, World!</h1>
-    <p>Welcome to the BalanceMe Website.</p>
-  </main>
+  <div class="wrap">
+    <h1>BalanceMe Website: Navigation Options</h1>
+    <p class="lead">Five layout prototypes with placeholder sections. Click one to try it, then resize the window to see how it works on mobile. Use the pill in the bottom-left corner to move between options.</p>
+
+    <div class="grid">
+      <a class="card" href="nav-options/option-1-top-bar.html">
+        <div class="preview"><iframe src="nav-options/option-1-top-bar.html" tabindex="-1" loading="lazy" title="Preview of option 1"></iframe></div>
+        <div class="card-body"><span class="num">1</span>
+          <div><h2>Top Bar</h2><p>Classic sticky horizontal bar with a call-to-action button. Becomes a hamburger dropdown on mobile.</p></div>
+        </div>
+      </a>
+      <a class="card" href="nav-options/option-2-sidebar.html">
+        <div class="preview"><iframe src="nav-options/option-2-sidebar.html" tabindex="-1" loading="lazy" title="Preview of option 2"></iframe></div>
+        <div class="card-body"><span class="num">2</span>
+          <div><h2>Sidebar</h2><p>Fixed left panel with grouped links, like a guide or handbook. Slides out as a drawer on mobile.</p></div>
+        </div>
+      </a>
+      <a class="card" href="nav-options/option-3-scroll.html">
+        <div class="preview"><iframe src="nav-options/option-3-scroll.html" tabindex="-1" loading="lazy" title="Preview of option 3"></iframe></div>
+        <div class="card-body"><span class="num">3</span>
+          <div><h2>One-Page Scroll</h2><p>Every section on one long page, with side dots that track where you are and a reading progress bar.</p></div>
+        </div>
+      </a>
+      <a class="card" href="nav-options/option-4-bottom-tabs.html">
+        <div class="preview"><iframe src="nav-options/option-4-bottom-tabs.html" tabindex="-1" loading="lazy" title="Preview of option 4"></iframe></div>
+        <div class="card-body"><span class="num">4</span>
+          <div><h2>Bottom Tabs</h2><p>Floating tab bar that matches the mobile app's feel. Turns into a native-style tab bar on phones.</p></div>
+        </div>
+      </a>
+      <a class="card" href="nav-options/option-5-overlay.html">
+        <div class="preview"><iframe src="nav-options/option-5-overlay.html" tabindex="-1" loading="lazy" title="Preview of option 5"></iframe></div>
+        <div class="card-body"><span class="num">5</span>
+          <div><h2>Full-Screen Menu</h2><p>Clean, minimal header. One menu button opens a large full-screen list of sections.</p></div>
+        </div>
+      </a>
+    </div>
+  </div>
 </body>
 </html>
