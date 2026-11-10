@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open BalanceMe in Expo Go</title>
+  <link rel="stylesheet" href="../nav-options/base.css">
+  <style>
+    body { min-height: 100vh; display: grid; place-items: center; padding: 24px; }
+    .box {
+      width: 100%;
+      max-width: 460px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 32px 24px;
+      text-align: center;
+    }
+    h1 { margin: 0 0 8px; font-size: 1.6rem; }
+    p { color: var(--muted); margin: 0 0 16px; }
+    .open {
+      display: block;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 16px;
+      border-radius: 999px;
+      margin: 20px 0 12px;
+    }
+    .qr { margin: 8px auto 16px; width: 200px; height: 200px; }
+    .stores { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
+    .stores a {
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 0.9rem;
+    }
+    ol { text-align: left; color: var(--text); padding-left: 20px; margin: 0 0 16px; }
+    ol li { margin-bottom: 6px; }
+    .small { font-size: 0.85rem; }
+    .phone-only, .desktop-only { display: none; }
+    body.is-phone .phone-only, body:not(.is-phone) .desktop-only { display: block; }
+  </style>
+</head>
+<body>
+  <main class="box">
+    <h1>BalanceMe App</h1>
+    <p>Open the app prototype on your phone with Expo Go. This link always opens the newest version.</p>
+
+    <div class="phone-only">
+      <a class="open" id="open" href="#">Open in Expo Go</a>
+      <p class="small">Nothing happened? Install Expo Go first, then tap the button again.</p>
+    </div>
+
+    <div class="desktop-only">
+      <img class="qr" src="../app-qr.svg" alt="QR code to open the BalanceMe app in Expo Go">
+      <p class="small">Scan with your phone's camera (iPhone) or inside Expo Go (Android). Or open this page on your phone and tap the button.</p>
+    </div>
+
+    <div class="stores">
+      <a href="https://apps.apple.com/app/expo-go/id982107779">Get Expo Go for iPhone</a>
+      <a href="https://play.google.com/store/apps/details?id=host.exp.exponent">Get Expo Go for Android</a>
+    </div>
+
+    <ol class="small">
+      <li>Install <strong>Expo Go</strong> (free) from the App Store or Google Play.</li>
+      <li>Tap <strong>Open in Expo Go</strong> on your phone, or scan the QR code.</li>
+      <li>To get the newest version later, close the app in Expo Go and open this link again.</li>
+    </ol>
+
+    <p class="small"><a href="../app/" style="color: var(--accent); font-weight: 600;">No phone handy? Try it in your browser &rarr;</a></p>
+    <p class="small">Prototype only. No real accounts are created and nothing is saved.</p>
+  </main>
+
+  <script>
+    // Expo Go link for the "preview" channel: always serves the latest published update
+    var EXPO_URL = 'exp://u.expo.dev/2f01f4d2-3c2d-439c-94d0-dba15e998bae?runtime-version=exposdk%3A58.0.0&channel-name=preview';
+    var isPhone = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    document.getElementById('open').href = EXPO_URL;
+    if (isPhone) {
+      document.body.classList.add('is-phone');
+      // Try to open Expo Go right away; the button stays as a fallback
+      setTimeout(function () { window.location.href = EXPO_URL; }, 300);
+    }
+  </script>
+</body>
+</html>

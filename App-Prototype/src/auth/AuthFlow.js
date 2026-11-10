@@ -8,6 +8,20 @@ import { DEMO_USER, FOCUS_AREAS, fmt, MOOD_REPLIES } from '../mockData';
 
 const isEmail = (e) => /^\S+@\S+\.\S+$/.test(e.trim());
 
+// Sample legal text for the prototype
+const TERMS = [
+  'BalanceMe is a tool for building healthier digital habits. It is not medical or mental health advice.',
+  'You must be 13 or older to create an account.',
+  'Be kind. Do not use BalanceMe to harass or harm others.',
+  'You can delete your account at any time.',
+];
+const PRIVACY = [
+  'Your screen time, moods and reflections stay private unless you choose to share them.',
+  'We never sell your personal data.',
+  'Streak sharing with friends is off by default.',
+  'You can download or delete your data at any time.',
+];
+
 function Shell({ children, onBack }) {
   const t = useTheme();
   const insets = useSafeAreaInsets();
@@ -121,6 +135,7 @@ function SignUp({ go, onDone }) {
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
   const [agree, setAgree] = useState(false);
+  const [doc, setDoc] = useState(null);
   const [errors, setErrors] = useState({});
 
   const submit = () => {
@@ -144,15 +159,55 @@ function SignUp({ go, onDone }) {
       <Field label="Email" value={email} onChangeText={setEmail} error={errors.email} keyboardType="email-address" autoCapitalize="none" placeholder="you@example.com" />
       <Field label="Password" value={password} onChangeText={setPassword} error={errors.password} secureTextEntry placeholder="At least 8 characters" />
       <Field label="Confirm password" value={confirm} onChangeText={setConfirm} error={errors.confirm} secureTextEntry placeholder="Type it again" />
-      <Pressable
-        onPress={() => setAgree(!agree)}
-        accessibilityRole="checkbox"
-        accessibilityState={{ checked: agree }}
-        style={{ flexDirection: 'row', gap: 10, alignItems: 'center', minHeight: 44 }}
-      >
-        <Icon name={agree ? 'checkbox' : 'square-outline'} size={24} color={t.accent} />
-        <T style={{ flex: 1 }}>I agree to the Terms of Use and Privacy Policy.</T>
-      </Pressable>
+      <View style={{ flexDirection: 'row', gap: 12, alignItems: 'center', minHeight: 48 }}>
+        <Pressable
+          onPress={() => setAgree(!agree)}
+          accessibilityRole="checkbox"
+          accessibilityLabel="I agree to the Terms of Use and Privacy Policy"
+          accessibilityState={{ checked: agree }}
+          hitSlop={12}
+          style={{
+            width: 28,
+            height: 28,
+            borderRadius: 8,
+            borderWidth: 2,
+            borderColor: errors.agree && !agree ? '#d93a3a' : t.accent,
+            backgroundColor: agree ? t.accent : 'transparent',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          {agree && <Text style={{ color: t.onAccent, fontSize: 17, fontWeight: '900', lineHeight: 20 }}>✓</Text>}
+        </Pressable>
+        <Text style={{ flex: 1, fontSize: 15, lineHeight: 21, color: t.text }} onPress={() => setAgree(!agree)}>
+          I agree to the{' '}
+          <Text style={{ color: t.accent, fontWeight: '700', textDecorationLine: 'underline' }} onPress={(e) => { e?.stopPropagation?.(); setDoc('terms'); }}>
+            Terms of Use
+          </Text>{' '}
+          and{' '}
+          <Text style={{ color: t.accent, fontWeight: '700', textDecorationLine: 'underline' }} onPress={(e) => { e?.stopPropagation?.(); setDoc('privacy'); }}>
+            Privacy Policy
+          </Text>
+          .
+        </Text>
+      </View>
+      {doc && (
+        <Card tone="alt">
+          <T variant="h2">{doc === 'terms' ? 'Terms of Use' : 'Privacy Policy'} (sample)</T>
+          {(doc === 'terms' ? TERMS : PRIVACY).map((line) => (
+            <T key={line} variant="muted">• {line}</T>
+          ))}
+          <Button
+            small
+            title={agree ? 'Close' : 'I agree'}
+            icon={agree ? undefined : 'checkmark'}
+            onPress={() => {
+              setAgree(true);
+              setDoc(null);
+            }}
+          />
+        </Card>
+      )}
       {errors.agree && <T variant="small" style={{ color: t.dark ? '#ff9b9b' : '#b42318' }}>{errors.agree}</T>}
       <Button title="Create account" onPress={submit} />
       <Pressable onPress={() => go('login')} accessibilityRole="button" style={{ alignSelf: 'center' }}>
