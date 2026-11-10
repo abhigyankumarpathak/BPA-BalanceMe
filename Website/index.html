@@ -58,12 +58,35 @@
     }
     .card h2 { margin: 2px 0 4px; font-size: 1.05rem; }
     .card p { margin: 0; color: var(--muted); font-size: 0.92rem; }
+    .app-box {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      padding: 20px;
+      margin: 0 0 32px;
+      background: var(--surface);
+      border: 1px solid var(--accent);
+      border-radius: var(--radius);
+    }
+    .app-box img { flex: none; border-radius: 8px; }
+    .app-box h2 { margin: 0 0 6px; font-size: 1.1rem; }
+    .app-box p { margin: 0 0 6px; color: var(--muted); font-size: 0.92rem; }
+    .app-box a { color: var(--accent); font-weight: 600; }
+    @media (max-width: 560px) { .app-box { flex-direction: column; align-items: flex-start; } }
   </style>
 </head>
 <body>
   <div class="wrap">
     <h1>BalanceMe Website: Navigation Options</h1>
     <p class="lead">five layout prototypes with placeholder sections. resize the window to see how it works on mobile. </p>
+    <div class="app-box">
+      <img src="app-qr.svg" alt="QR code to open the BalanceMe app in Expo Go" width="132" height="132">
+      <div>
+        <h2>App navigation options</h2>
+        <p><a href="app/">Try it in your browser &rarr;</a></p>
+        <p>On your phone: install <strong>Expo Go</strong> from the App Store or Google Play, then scan this code with your camera (iPhone) or inside Expo Go (Android). Or on your phone, tap <a href="exp://u.expo.dev/2f01f4d2-3c2d-439c-94d0-dba15e998bae?runtime-version=exposdk%3A58.0.0&amp;channel-name=preview">open in Expo Go</a>.</p>
+      </div>
+    </div>
 
     <div class="grid">
       <a class="card" href="nav-options/option-1-top-bar.html">
